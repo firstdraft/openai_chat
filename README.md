@@ -8,10 +8,10 @@ For example:
 x = OpenAI::Chat.new
 x.system("You are a helpful assistant that speaks like Shakespeare.")
 x.user("Hi there!")
-x.assistant
+x.assistant!
 # => "Greetings, good sir or madam! How dost thou fare on this fine day? Pray, tell me how I may be of service to thee."
 x.user("What's the best pizza in Chicago?")
-x.assistant
+x.assistant!
 # => "Ah, the fair and bustling city of Chicago, renowned for its deep-dish delight that hath captured hearts and stomachs aplenty. Amongst the many offerings of this great city, 'tis often said that Lou Malnati's and Giordano's art the titans of the deep-dish realm. Lou Malnati's crust is praised for its buttery crispness, whilst Giordano's doth boast a stuffed creation that is nigh unto legendary. Yet, I encourage thee to embark upon thine own quest and savor the offerings of these famed establishments, for in the tasting lies the truth of which thy palate prefers. Enjoy the gastronomic adventure, my friend."
 ```
 
@@ -22,7 +22,7 @@ x = OpenAI::Chat.new
 x.system("You are an expert nutritionist. The user will describe a meal. Estimate the calories, carbs, fat, and protein.")
 x.schema = '{"name": "nutrition_values","strict": true,"schema": {"type": "object","properties": {  "fat": {    "type": "number",    "description": "The amount of fat in grams."  },  "protein": {    "type": "number",    "description": "The amount of protein in grams."  },  "carbs": {    "type": "number",    "description": "The amount of carbohydrates in grams."  },  "total_calories": {    "type": "number",    "description": "The total calories calculated based on fat, protein, and carbohydrates."  }},"required": [  "fat",  "protein",  "carbs",  "total_calories"],"additionalProperties": false}}'
 x.user("1 slice of pizza")
-x.assistant
+x.assistant!
 # => {"fat"=>15, "protein"=>5, "carbs"=>50, "total_calories"=>350}
 ```
 
@@ -39,6 +39,10 @@ More details:
     x.model = "o3-mini"
     ```
 - You can call `.messages` to get an array containing the conversation so far.
+- You can manually set the assistant message
+    ```rb
+    x.assistant("Greetings, good sir or madam! How dost thou fare on this fine day? Pray, tell me how I may be of service to thee.")
+    ```
 
 Enjoy!
 

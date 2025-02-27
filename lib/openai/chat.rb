@@ -23,8 +23,12 @@ module OpenAI
     def user(content)
       messages.push({role: "user", content:})
     end
-  
-    def assistant
+
+    def assistant(content)
+      messages.push({role: "assistant", content:})
+    end
+
+    def assistant!
       request_headers_hash = {
         "Authorization" => "Bearer #{@api_token}",
         "content-type" => "application/json",
