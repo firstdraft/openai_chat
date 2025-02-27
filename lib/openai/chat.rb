@@ -66,5 +66,9 @@ module OpenAI
   
       schema.present? ? JSON.parse(content) : content
     end
+
+    def inspect
+      "#<#{self.class.name} @messages=#{messages.inspect} @model=#{@model.inspect} @schema=#{@schema.inspect}>"
+    end
   end
 end
