@@ -3,22 +3,22 @@
 require_relative "lib/openai/chat/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "openai_chat"
+  spec.name = "openai-chat"
   spec.version = OpenAI::Chat::VERSION
   spec.authors = ["Jelani Woods"]
   spec.email = ["jelani@firstdraft.com"]
 
   spec.summary = "This gem provides a class called `OpenAI::Chat` that is intended to make it as easy as possible to use OpenAI's Chat Completions endpoint."
   spec.description = "This gem provides a class called `OpenAI::Chat` that is intended to make it as easy as possible to use OpenAI's Chat Completions endpoint. Supports Structured Output."
-  spec.homepage = "https://github.com/firstdraft/openai_chat"
+  spec.homepage = "https://github.com/firstdraft/openai-chat"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/firstdraft/openai_chat"
-  spec.metadata["changelog_uri"] = "https://github.com/firstdraft/openai_chat/blob/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/firstdraft/openai-chat"
+  spec.metadata["changelog_uri"] = "https://github.com/firstdraft/openai-chat/blob/main/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
