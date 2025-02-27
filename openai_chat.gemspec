@@ -30,9 +30,9 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.add_runtime_dependency "activesupport", ">= 2.3.5"
-  spec.add_runtime_dependency "http", ">= 5.2.0"
-  spec.add_runtime_dependency "json", ">= 2.6.0"
+  spec.add_runtime_dependency "activesupport", "~> 2.3", ">= 2.3.5"
+  spec.add_runtime_dependency "http", "~> 5.2", ">= 5.2.0"
+  spec.add_runtime_dependency "json", "~> 2.6", ">= 2.6.0"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
