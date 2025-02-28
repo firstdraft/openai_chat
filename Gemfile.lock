@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    openai-chat (0.0.1)
-      activesupport (~> 2.3, >= 2.3.5)
-      http (~> 5.2, >= 5.2.0)
-      json (~> 2.6, >= 2.6.0)
+    openai-chat (0.0.2)
+      activesupport (>= 2.3.5)
+      http (>= 5.2.0)
+      json (>= 2.6.0)
 
 GEM
   remote: https://rubygems.org/
@@ -38,9 +38,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  activesupport (~> 2.3, >= 2.3.5)
-  http (~> 5.2, >= 5.2.0)
-  json (~> 2.6, >= 2.6.0)
+  activesupport (>= 2.3.5)
+  http (>= 5.2.0)
+  json (>= 2.6.0)
   openai-chat!
 
 BUNDLED WITH
