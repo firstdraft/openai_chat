@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "This gem provides a class called `OpenAI::Chat` that is intended to make it as easy as possible to use OpenAI's Chat Completions endpoint. Supports Structured Output."
   spec.homepage = "https://github.com/firstdraft/openai-chat"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 1.6.7"
+  spec.required_ruby_version = ">= 2.0.0"
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
