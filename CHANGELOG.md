@@ -6,4 +6,6 @@
 
 ## [0.0.2] - 2025-02-28
 
-- Gem dependencies are now open-ended.
+- All dependencies have been removed
+- Supports Ruby 2.0.0
+- Updates gem author
