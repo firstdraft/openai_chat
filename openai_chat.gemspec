@@ -5,8 +5,8 @@ require_relative "lib/openai/chat/version"
 Gem::Specification.new do |spec|
   spec.name = "openai-chat"
   spec.version = OpenAI::Chat::VERSION
-  spec.authors = ["Jelani Woods"]
-  spec.email = ["jelani@firstdraft.com"]
+  spec.authors = ["Raghu Betina", "Jelani Woods"]
+  spec.email = ["raghu@firstdraft.com", "jelani@firstdraft.com"]
 
   spec.summary = "This gem provides a class called `OpenAI::Chat` that is intended to make it as easy as possible to use OpenAI's Chat Completions endpoint."
   spec.description = "This gem provides a class called `OpenAI::Chat` that is intended to make it as easy as possible to use OpenAI's Chat Completions endpoint. Supports Structured Output."
