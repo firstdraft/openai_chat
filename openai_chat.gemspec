@@ -5,14 +5,14 @@ require_relative "lib/openai/chat/version"
 Gem::Specification.new do |spec|
   spec.name = "openai-chat"
   spec.version = OpenAI::Chat::VERSION
-  spec.authors = ["Jelani Woods"]
-  spec.email = ["jelani@firstdraft.com"]
+  spec.authors = ["Raghu Betina", "Jelani Woods"]
+  spec.email = ["raghu@firstdraft.com", "jelani@firstdraft.com"]
 
   spec.summary = "This gem provides a class called `OpenAI::Chat` that is intended to make it as easy as possible to use OpenAI's Chat Completions endpoint."
   spec.description = "This gem provides a class called `OpenAI::Chat` that is intended to make it as easy as possible to use OpenAI's Chat Completions endpoint. Supports Structured Output."
   spec.homepage = "https://github.com/firstdraft/openai-chat"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 2.0.0"
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
@@ -30,9 +30,6 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.add_runtime_dependency "activesupport", ">= 2.3.5"
-  spec.add_runtime_dependency "http", ">= 5.2.0"
-  spec.add_runtime_dependency "json", ">= 2.6.0"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
