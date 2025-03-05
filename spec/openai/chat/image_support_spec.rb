@@ -146,7 +146,7 @@ RSpec.describe OpenAI::Chat, "image support" do
         expect(last_message[:content][1][:image_url][:url]).to eq(test_image_url)
         expect(last_message[:content][1][:image_url][:detail]).to eq("high")
       end
-      
+
       it "processes simplified image/text format correctly" do
         simplified_content = [
           {"text" => "A message with simplified format"},
