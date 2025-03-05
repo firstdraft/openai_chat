@@ -67,10 +67,26 @@ Or, install it directly with:
 gem install openai-chat
 ```
 
+## Image Support
+
+You can include images in your chat messages using the `user` method with the `image` or `images` parameter:
+
+```ruby
+# Send a single image
+x.user("What's in this image?", image: "path/to/local/image.jpg")
+
+# Send multiple images
+x.user("What are these images showing?", images: ["path/to/image1.jpg", "https://example.com/image2.jpg"])
+```
+
+The gem supports three types of image inputs:
+- URLs: Pass an image URL starting with http:// or https://
+- File paths: Pass a string with a path to a local image file
+- File-like objects: Pass an object that responds to `read` (like `File.open("image.jpg")` or a Rails uploaded file)
+
 ## TODOs
 
 - Add a `reasoning_effort` parameter.
-- Add the ability to send images.
 - Add the ability to set all messages at once, ideally with an ActiveRecord Relation.
 - Add a way to access the whole API response body (rather than just the message content).
 - Add specs.

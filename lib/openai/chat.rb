@@ -38,7 +38,7 @@ module OpenAI
           }
         ]
 
-        if images.present?
+        if images && !images.empty?
           images_array = images.map do |image|
             {
               type: "image_url",
@@ -156,7 +156,7 @@ module OpenAI
     def process_image(obj)
       case classify_obj(obj)
       when :url
-        image
+        obj
       when :file_path
         file_path = obj
 
@@ -168,13 +168,23 @@ module OpenAI
 
         "data:#{mime_type};base64,#{base64_string}"
       when :file_like
-        filename = obj
+        if obj.respond_to?(:path)
+          filename = obj.path
+        elsif obj.respond_to?(:original_filename)
+          filename = obj.original_filename
+        else
+          filename = "unknown"
+        end
 
         mime_type = MIME::Types.type_for(filename).first.to_s
+        mime_type = "image/jpeg" if mime_type.empty?
+
+        image_data = obj.read
+        obj.rewind if obj.respond_to?(:rewind)
 
         base64_string = Base64.strict_encode64(image_data)
 
-        data_uri = "data:#{mime_type};base64,#{base64_string}"
+        "data:#{mime_type};base64,#{base64_string}"
       end
     end
   end
