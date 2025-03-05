@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Register dependencies of the gem
-  spec.add_runtime_dependency "mime-types", "~> 3.5"
+  spec.add_runtime_dependency "mime-types", "~> 3.0"
 
   # Development dependencies
   spec.add_development_dependency "rake", "~> 13.0"
