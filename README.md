@@ -80,32 +80,31 @@ The gem supports three types of image inputs:
 - File paths: Pass a string with a path to a local image file.
 - File-like objects: Pass an object that responds to `read` (like `File.open("image.jpg")` or a Rails uploaded file).
 
-You can take complete control over the `content` parameter by passing an `Array` to `user()`; for example, to send multiple images in the same message:
+You can send multiple images, and place them between bits of text, in a single user message:
 
-```rb
+```ruby
 z = OpenAI::Chat.new
 z.user(
   [
-    {
-      "type": "image_url",
-      "image_url": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Eubalaena_glacialis_with_calf.jpg/215px-Eubalaena_glacialis_with_calf.jpg",
-      }
-    },
-    {
-      "type": "text",
-      "text": "What is in the above image? What is in the below image?"
-    },
-    {
-      "type": "image_url",
-      "image_url": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Elephant_Diversity.jpg/305px-Elephant_Diversity.jpg",
-      }
-    },
-    {
-      "type": "text",
-      "text": "What are the differences between the images?"
-    }
+    {"image" => "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Eubalaena_glacialis_with_calf.jpg/215px-Eubalaena_glacialis_with_calf.jpg"},
+    {"text" => "What is in the above image? What is in the below image?"},
+    {"image" => "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Elephant_Diversity.jpg/305px-Elephant_Diversity.jpg"},
+    {"text" => "What are the differences between the images?"}
+  ]
+)
+z.assistant!
+```
+
+Both string and symbol keys are supported for the hash items:
+
+```ruby
+z = OpenAI::Chat.new
+z.user(
+  [
+    {image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Eubalaena_glacialis_with_calf.jpg/215px-Eubalaena_glacialis_with_calf.jpg"},
+    {text: "What is in the above image? What is in the below image?"},
+    {image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Elephant_Diversity.jpg/305px-Elephant_Diversity.jpg"},
+    {text: "What are the differences between the images?"}
   ]
 )
 z.assistant!

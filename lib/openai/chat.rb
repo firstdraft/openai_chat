@@ -19,17 +19,19 @@ module OpenAI
     def user(content, image: nil, images: nil)
       if content.is_a?(Array)
         processed_content = content.map do |item|
-          if item.key?("image")
+          if item.key?("image") || item.key?(:image)
+            image_value = item.fetch("image") { item.fetch(:image) }
             {
               type: "image_url",
               image_url: {
-                url: process_image(item.fetch("image"))
+                url: process_image(image_value)
               }
             }
-          elsif item.key?("text")
+          elsif item.key?("text") || item.key?(:text)
+            text_value = item.fetch("text") { item.fetch(:text) }
             {
               type: "text",
-              text: item.fetch("text")
+              text: text_value
             }
           else
             item
