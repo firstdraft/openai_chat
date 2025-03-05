@@ -80,9 +80,41 @@ x.user("What are these images showing?", images: ["path/to/image1.jpg", "https:/
 ```
 
 The gem supports three types of image inputs:
+
 - URLs: Pass an image URL starting with http:// or https://
 - File paths: Pass a string with a path to a local image file
 - File-like objects: Pass an object that responds to `read` (like `File.open("image.jpg")` or a Rails uploaded file)
+
+You can take complete control over the `content` parameter by passing an `Array` to `user()`; for example, to send multiple images in the same message:
+
+```rb
+z = OpenAI::Chat.new
+z.user(
+  [
+    {
+      "type": "image_url",
+      "image_url": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Eubalaena_glacialis_with_calf.jpg/215px-Eubalaena_glacialis_with_calf.jpg",
+      }
+    },
+    {
+      "type": "text",
+      "text": "What is in the above image? What is in the below image?"
+    },
+    {
+      "type": "image_url",
+      "image_url": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Elephant_Diversity.jpg/305px-Elephant_Diversity.jpg",
+      }
+    },
+    {
+      "type": "text",
+      "text": "What are the differences between the images?"
+    }
+  ]
+)
+z.assistant!
+```
 
 ## TODOs
 

@@ -54,6 +54,7 @@ GEM
     public_suffix (6.0.1)
     racc (1.8.1)
     rainbow (3.1.1)
+    rake (13.2.1)
     regexp_parser (2.10.0)
     rexml (3.4.1)
     rspec (3.13.0)
@@ -118,6 +119,7 @@ PLATFORMS
 DEPENDENCIES
   factory_bot (~> 6.2)
   openai-chat!
+  rake (~> 13.0)
   rspec (~> 3.12)
   standard (~> 1.32)
   vcr (~> 6.1)

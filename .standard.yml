@@ -6,3 +6,6 @@ ignore:
   - 'vendor/**/*'
   - 'spec/fixtures/**/*'
   - 'spec/vcr_cassettes/**/*'
+  - '*.md'
+  - '*.markdown'
+  - 'LICENSE*'
