@@ -18,7 +18,6 @@ module OpenAI
 
     def user(content, image: nil, images: nil)
       if content.is_a?(Array)
-        # Process the simplified image/text format
         processed_content = content.map do |item|
           if item.key?("image")
             {
@@ -33,10 +32,10 @@ module OpenAI
               text: item.fetch("text")
             }
           else
-            item # Keep any other format as-is
+            item
           end
         end
-        
+
         messages.push(
           {
             role: "user",
