@@ -62,16 +62,6 @@ x.assistant!
 # => {"fat"=>15, "protein"=>5, "carbs"=>50, "total_calories"=>350}
 ```
 
-## Set assistant messages manually
-
-You can manually add assistant messages:
-
-```rb
-x.assistant("Greetings, good sir or madam! How dost thou fare on this fine day? Pray, tell me how I may be of service to thee.")
-```
-
-Useful if you are reconstructing a previous chat.
-
 ## Include images
 
 You can include images in your chat messages using the `user` method with the `image` or `images` parameter:
@@ -120,6 +110,16 @@ z.user(
 )
 z.assistant!
 ```
+
+## Set assistant messages manually
+
+You can manually add assistant messages:
+
+```rb
+x.assistant("Greetings, good sir or madam! How dost thou fare on this fine day? Pray, tell me how I may be of service to thee.")
+```
+
+Useful if you are reconstructing a previous chat.
 
 ## Getting and setting messages directly
 
