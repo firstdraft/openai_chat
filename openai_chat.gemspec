@@ -34,6 +34,12 @@ Gem::Specification.new do |spec|
   # Register dependencies of the gem
   spec.add_dependency "mime-types", "~> 3.5"
 
+  # Development dependencies
+  spec.add_development_dependency "rspec", "~> 3.12"
+  spec.add_development_dependency "factory_bot", "~> 6.2"
+  spec.add_development_dependency "webmock", "~> 3.18"
+  spec.add_development_dependency "vcr", "~> 6.1"
+
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
 end
