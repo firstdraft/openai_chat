@@ -123,12 +123,12 @@ RSpec.describe OpenAI::Chat, "image support" do
     context "with direct array content" do
       it "uses the array as is when passed directly" do
         custom_content = [
-          { type: "text", text: "Custom message with direct array" },
-          { 
+          {type: "text", text: "Custom message with direct array"},
+          {
             type: "image_url",
-            image_url: { 
+            image_url: {
               url: test_image_url,
-              detail: "high" 
+              detail: "high"
             }
           }
         ]
@@ -140,7 +140,7 @@ RSpec.describe OpenAI::Chat, "image support" do
         expect(last_message[:content]).to eq(custom_content)
         expect(last_message[:content]).to be_an(Array)
         expect(last_message[:content].length).to eq(2)
-        
+
         # Image content with custom parameters
         expect(last_message[:content][1][:type]).to eq("image_url")
         expect(last_message[:content][1][:image_url][:url]).to eq(test_image_url)
