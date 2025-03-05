@@ -17,7 +17,33 @@ module OpenAI
     end
 
     def user(content, image: nil, images: nil)
-      if (image.nil? && images.nil?) || content.is_a?(Array)
+      if content.is_a?(Array)
+        # Process the simplified image/text format
+        processed_content = content.map do |item|
+          if item.key?("image")
+            {
+              type: "image_url",
+              image_url: {
+                url: process_image(item.fetch("image"))
+              }
+            }
+          elsif item.key?("text")
+            {
+              type: "text",
+              text: item.fetch("text")
+            }
+          else
+            item # Keep any other format as-is
+          end
+        end
+        
+        messages.push(
+          {
+            role: "user",
+            content: processed_content
+          }
+        )
+      elsif image.nil? && images.nil?
         messages.push(
           {
             role: "user",

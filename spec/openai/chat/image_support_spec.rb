@@ -146,6 +146,33 @@ RSpec.describe OpenAI::Chat, "image support" do
         expect(last_message[:content][1][:image_url][:url]).to eq(test_image_url)
         expect(last_message[:content][1][:image_url][:detail]).to eq("high")
       end
+      
+      it "processes simplified image/text format correctly" do
+        simplified_content = [
+          {"text" => "A message with simplified format"},
+          {"image" => test_image_path},
+          {"image" => test_image_url}
+        ]
+
+        chat.user(simplified_content)
+
+        last_message = chat.messages.last
+        expect(last_message[:role]).to eq("user")
+        expect(last_message[:content]).to be_an(Array)
+        expect(last_message[:content].length).to eq(3)
+
+        # Text content
+        expect(last_message[:content][0][:type]).to eq("text")
+        expect(last_message[:content][0][:text]).to eq("A message with simplified format")
+
+        # First image (file path)
+        expect(last_message[:content][1][:type]).to eq("image_url")
+        expect(last_message[:content][1][:image_url][:url]).to start_with("data:image/jpeg;base64,")
+
+        # Second image (URL)
+        expect(last_message[:content][2][:type]).to eq("image_url")
+        expect(last_message[:content][2][:image_url][:url]).to eq(test_image_url)
+      end
     end
   end
 
