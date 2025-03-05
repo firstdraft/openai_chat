@@ -118,7 +118,7 @@ You can manually add assistant messages:
 x.assistant("Greetings, good sir or madam! How dost thou fare on this fine day? Pray, tell me how I may be of service to thee.")
 ```
 
-Useful if you are reconstructing a previous chat.
+Useful if you are reconstructing old messages from a chat that has already happened.
 
 ## Getting and setting messages directly
 
