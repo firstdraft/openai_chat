@@ -70,7 +70,7 @@ module OpenAI
     def assistant!
       request_headers_hash = {
         "Authorization" => "Bearer #{@api_token}",
-        "content-type" => "application/json",
+        "content-type" => "application/json"
       }
 
       response_format = if schema.nil?
@@ -131,19 +131,17 @@ module OpenAI
 
         # Check if the string represents a local file path (must exist on disk).
         if File.exist?(obj)
-          return :file_path
+          :file_path
         else
           raise InputClassificationError,
-                "String provided is neither a valid URL (must start with http:// or https://) nor an existing file path on disk. Received value: #{obj.inspect}"
+            "String provided is neither a valid URL (must start with http:// or https://) nor an existing file path on disk. Received value: #{obj.inspect}"
         end
-      else
+      elsif obj.respond_to?(:read)
         # For non-String objects, check if it behaves like a file.
-        if obj.respond_to?(:read)
-          return :file_like
-        else
-          raise InputClassificationError,
-                "Object provided is neither a String nor file-like (missing :read method). Received value: #{obj.inspect}"
-        end
+        :file_like
+      else
+        raise InputClassificationError,
+          "Object provided is neither a String nor file-like (missing :read method). Received value: #{obj.inspect}"
       end
     end
 
@@ -162,12 +160,12 @@ module OpenAI
 
         "data:#{mime_type};base64,#{base64_string}"
       when :file_like
-        if obj.respond_to?(:path)
-          filename = obj.path
+        filename = if obj.respond_to?(:path)
+          obj.path
         elsif obj.respond_to?(:original_filename)
-          filename = obj.original_filename
+          obj.original_filename
         else
-          filename = "unknown"
+          "unknown"
         end
 
         mime_type = MIME::Types.type_for(filename).first.to_s

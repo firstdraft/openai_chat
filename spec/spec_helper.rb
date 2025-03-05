@@ -13,7 +13,7 @@ VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"
   config.hook_into :webmock
   config.configure_rspec_metadata!
-  
+
   # Filter sensitive data
   config.filter_sensitive_data("<OPENAI_TOKEN>") do |interaction|
     ENV["OPENAI_TOKEN"] || "dummy_token"
@@ -33,13 +33,13 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
-  
+
   # Run VCR for all specs
   config.around(:each) do |example|
     vcr_tag = example.metadata[:vcr]
-    
+
     if vcr_tag
-      cassette_name = vcr_tag == true ? example.full_description : vcr_tag
+      cassette_name = (vcr_tag == true) ? example.full_description : vcr_tag
       VCR.use_cassette(cassette_name, record: :once) do
         example.run
       end

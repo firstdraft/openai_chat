@@ -18,13 +18,13 @@ RSpec.describe OpenAI::Chat, "image support" do
     context "with a file path" do
       it "converts the file to a base64 data URI" do
         result = chat.send(:process_image, test_image_path)
-        
+
         expect(result).to start_with("data:image/jpeg;base64,")
-        
+
         # Decode the base64 data and verify it matches the original file
         base64_data = result.split(",").last
         decoded_data = Base64.strict_decode64(base64_data)
-        
+
         expect(decoded_data).to eq(File.binread(test_image_path))
       end
     end
@@ -33,33 +33,33 @@ RSpec.describe OpenAI::Chat, "image support" do
       it "converts the file content to a base64 data URI" do
         file = File.open(test_image_path)
         result = chat.send(:process_image, file)
-        
+
         expect(result).to start_with("data:image/jpeg;base64,")
-        
+
         # Decode the base64 data and verify it matches the original file
         base64_data = result.split(",").last
         decoded_data = Base64.strict_decode64(base64_data)
-        
+
         expect(decoded_data).to eq(File.binread(test_image_path))
-        
+
         # Check that the file pointer has been reset
         expect(file.pos).to eq(0)
-        
+
         file.close
       end
 
       it "handles StringIO objects" do
         content = File.binread(test_image_path)
         string_io = StringIO.new(content)
-        
+
         result = chat.send(:process_image, string_io)
-        
+
         expect(result).to start_with("data:image/jpeg;base64,")
-        
+
         # Decode the base64 data and verify it matches the original content
         base64_data = result.split(",").last
         decoded_data = Base64.strict_decode64(base64_data)
-        
+
         expect(decoded_data).to eq(content)
       end
     end
@@ -69,16 +69,16 @@ RSpec.describe OpenAI::Chat, "image support" do
     context "with a single image" do
       it "formats the message correctly with an image" do
         chat.user("Test with image", image: test_image_path)
-        
+
         last_message = chat.messages.last
         expect(last_message[:role]).to eq("user")
         expect(last_message[:content]).to be_an(Array)
         expect(last_message[:content].length).to eq(2)
-        
+
         # Text content
         expect(last_message[:content][0][:type]).to eq("text")
         expect(last_message[:content][0][:text]).to eq("Test with image")
-        
+
         # Image content
         expect(last_message[:content][1][:type]).to eq("image_url")
         expect(last_message[:content][1][:image_url][:url]).to start_with("data:image/jpeg;base64,")
@@ -86,11 +86,11 @@ RSpec.describe OpenAI::Chat, "image support" do
 
       it "formats the message correctly with an image URL" do
         chat.user("Test with image URL", image: test_image_url)
-        
+
         last_message = chat.messages.last
         expect(last_message[:role]).to eq("user")
         expect(last_message[:content]).to be_an(Array)
-        
+
         # Image content
         expect(last_message[:content][1][:type]).to eq("image_url")
         expect(last_message[:content][1][:image_url][:url]).to eq(test_image_url)
@@ -100,20 +100,20 @@ RSpec.describe OpenAI::Chat, "image support" do
     context "with multiple images" do
       it "formats the message correctly with multiple images" do
         chat.user("Test with multiple images", images: [test_image_path, test_image_url])
-        
+
         last_message = chat.messages.last
         expect(last_message[:role]).to eq("user")
         expect(last_message[:content]).to be_an(Array)
         expect(last_message[:content].length).to eq(3) # Text + 2 images
-        
+
         # Text content
         expect(last_message[:content][0][:type]).to eq("text")
         expect(last_message[:content][0][:text]).to eq("Test with multiple images")
-        
+
         # First image (file path)
         expect(last_message[:content][1][:type]).to eq("image_url")
         expect(last_message[:content][1][:image_url][:url]).to start_with("data:image/jpeg;base64,")
-        
+
         # Second image (URL)
         expect(last_message[:content][2][:type]).to eq("image_url")
         expect(last_message[:content][2][:image_url][:url]).to eq(test_image_url)

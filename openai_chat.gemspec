@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "factory_bot", "~> 6.2"
   spec.add_development_dependency "webmock", "~> 3.18"
   spec.add_development_dependency "vcr", "~> 6.1"
+  spec.add_development_dependency "standard", "~> 1.32"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
