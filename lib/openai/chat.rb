@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
-require "base64"
-require "json"
-require "mime/types"
-require "net/http"
-require "openai/chat/version"
-require "pathname"
-require "uri"
+# All dependencies are now required in the main openai-chat.rb file
 
 module OpenAI
   class Chat
